@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rnaiutilities</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rnai-parse" href="rnai_parse.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rnaiutilities">
+<h1>rnaiutilities<a class="headerlink" href="#rnaiutilities" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to <code class="docutils literal"><span class="pre">rnaiutilities</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">rnaiutilities</span></code> is a collection of python scripts and modules for working
+with image-based RNAi perturbation data. If offers the following
+functionalities:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">rnai-parse</span></code> for parsing and checking CellProfiler matlab files,</li>
+<li><code class="docutils literal"><span class="pre">rnai-query</span></code> for inserting meta information to a database, building datasets and selecting meta information from the DB,</li>
+<li><code class="docutils literal"><span class="pre">rnai-normalize</span></code> for normalizing the datasets.</li>
+</ul>
+<p>The package is still under development, so if you&#8217;d like to contribute,
+<a class="reference external" href="https://github.com/cbg-ethz/rnaiutilities">fork us on GitHub</a>.</p>
+<div class="section" id="command-line-scripts">
+<h2>Command line scripts<a class="headerlink" href="#command-line-scripts" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rnai_parse.html">rnai-parse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rnai_parse.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_parse.html#checking-for-file-availability">Checking for file availability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_parse.html#parsing-the-data">Parsing the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_parse.html#generating-a-report">Generating a report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_parse.html#computing-overlapping-feature-sets">Computing overlapping feature sets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rnai_query.html#inserting-meta-information">Inserting meta information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_query.html#creating-data-sets">Creating data-sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnai_query.html#selecting-single-variables-from-the-database">Selecting single variables from the database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_normalize.html">rnai-normalize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rnai_normalize.html#normalizing-data-by-standardization">Normalizing data by standardization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="#">
+    <img src="_static/fig_single_cells.jpg"
+         title="rnaiutilities"/>
+  </a>
+</p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+
+<h3><a href="#">Home</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rnai_parse.html">rnai-parse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_normalize.html">rnai-normalize</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
+</ul>
+
+
+<br>
+<hr>
+
+<h3>Contact</h3>
+<ul class="list-unstyled">
+    <li>Simon Dirmeier
+        <a style="color: #8383d2"
+           href="mailto:simon.dirmeier@bsse.ethz.ch">simon.dirmeier@bsse.ethz.ch</a>
+    </li>
+</ul>
+
+<h3>License</h3>
+<ul class="list-unstyled">
+    <li><a style="color: #8383d2"
+           href="https://github.com/cbg-ethz/rnaiutilities/blob/master/LICENSE">GPL-3</a>
+    </li>
+</ul>
+
+<h3>Links</h3>
+<ul>
+    <li><i class="fa fa-github-square fa-lg" aria-hidden="true"></i>
+        <a style="color: #8383d2"
+           href="https://github.com/cbg-ethz/rnaiutilities">
+            <code style="color:#8383d2l"
+                  class="docutils literal"><span
+                    class="pre">rnaiutilities
+            </span></code>
+            GitHub page
+        </a>
+    </li>
+    <li><i class="fa fa-github-square fa-lg" aria-hidden="true"></i>
+        <a style="color: #8383d2"
+           href="http://github.com/cbg-ethz/"> <b>CBG</b> GitHub page</a>
+    </li>
+</ul>
+<ul>
+    <li>
+        <i class="fa fa-github-square fa-lg" aria-hidden="true"></i>
+        <a style="color: #8383d2"
+           href="http://github.com/dirmeier/"> Simon's GitHub page</a>
+    </li>
+    <li>
+        <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+        <a style="color: #8383d2"
+           href="http://dirmeier.github.io"> Simon's personal Homepage</a>
+    </li>
+    <li>
+        <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
+        <a style="color: #8383d2"
+           href="http://twitter.com/simon_dirmeier/"> Follow Simon on
+            Twitter</a>
+    </li>
+</ul>
+
+<h3>Contributors</h3>
+<ul>
+    <li>Martin Pirkl</li>
+</ul>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Simon Dirmeier.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

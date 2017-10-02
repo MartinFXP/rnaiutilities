@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rnai-normalize</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parser" href="api.html" />
+    <link rel="prev" title="rnai-query" href="rnai_query.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rnai-normalize">
+<h1>rnai-normalize<a class="headerlink" href="#rnai-normalize" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">rnai-normalize</span></code> performs normalization of the compiled data-sets (see
+<a class="reference internal" href="rnai_query.html"><span class="doc">rnai-query</span></a>). Usually, RNA interference screens suffer from batch
+effects that have to be corrected for.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">rnai-normalize</span></code> so far only <em>standardizes</em> the data-set. We hope to extend</dt>
+<dd>the method soon...</dd>
+</dl>
+<p>The following sections explain the tool&#8217;s usage.</p>
+<div class="section" id="normalizing-data-by-standardization">
+<h2>Normalizing data by standardization<a class="headerlink" href="#normalizing-data-by-standardization" title="Permalink to this headline">¶</a></h2>
+<p>In order to normalize your data-set, just call:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-normalize i_am_the_result_from_rnai_query.tsv
+</pre></div>
+</div>
+<p>That&#8217;s it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img src="_static/fig_single_cells.jpg"
+         title="rnaiutilities"/>
+  </a>
+</p><h3><a href="index.html">Home</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rnai_parse.html">rnai-parse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">rnai-normalize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#normalizing-data-by-standardization">Normalizing data by standardization</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Simon Dirmeier.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

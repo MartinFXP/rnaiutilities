@@ -1,5 +1,0 @@
-layout_file: "layout.tsv"
-plate_folder: "./"
-output_path: "./"
-plate_id_file: "experiment_meta_file.tsv"
-multiprocessing: False
