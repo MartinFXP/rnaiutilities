@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+ <body role="document">
   
 
     <div class="document">
@@ -31,17 +31,38 @@
             
   <div class="section" id="rnaiutilities">
 <h1>rnaiutilities<a class="headerlink" href="#rnaiutilities" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="http://www.repostatus.org/#active"><img alt="http://www.repostatus.org/badges/latest/active.svg" src="http://www.repostatus.org/badges/latest/active.svg" /></a>
+<a class="reference external image-reference" href="https://travis-ci.org/cbg-ethz/rnaiutilities/"><img alt="https://travis-ci.org/cbg-ethz/rnaiutilities.svg?branch=master" src="https://travis-ci.org/cbg-ethz/rnaiutilities.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/cbg-ethz/rnaiutilities"><img alt="https://codecov.io/gh/cbg-ethz/rnaiutilities/branch/master/graph/badge.svg" src="https://codecov.io/gh/cbg-ethz/rnaiutilities/branch/master/graph/badge.svg" /></a>
+<a class="reference external image-reference" href="https://www.codacy.com/app/simon-dirmeier/rnaiutilities_2?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=cbg-ethz/rnaiutilities&amp;amp;utm_campaign=Badge_Grade"><img alt="https://api.codacy.com/project/badge/Grade/1822ba83768d4d7389ba667a9c839638" src="https://api.codacy.com/project/badge/Grade/1822ba83768d4d7389ba667a9c839638" /></a>
+<a class="reference external image-reference" href="http://rnaiutilities.readthedocs.io/en/latest/"><img alt="doc" src="https://readthedocs.org/projects/rnaiutilities/badge/?version=latest" /></a>
+<p>A collection of python modules and command line tools for processing image-based RNAi screens.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Welcome to <code class="docutils literal"><span class="pre">rnaiutilities</span></code>.</p>
-<p><code class="docutils literal"><span class="pre">rnaiutilities</span></code> is a collection of python scripts and modules for working
-with image-based RNAi perturbation data. If offers the following
-functionalities:</p>
+<p><code class="docutils literal"><span class="pre">rnaiutilities</span></code> provide a set of python modules and commandline scripts that can be used to process, convert, query and analyse imaged-based RNAi-screens.</p>
+<p>The packages are designed for the following workflow:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">rnai-parse</span></code> for parsing and checking CellProfiler matlab files,</li>
-<li><code class="docutils literal"><span class="pre">rnai-query</span></code> for inserting meta information to a database, building datasets and selecting meta information from the DB,</li>
-<li><code class="docutils literal"><span class="pre">rnai-normalize</span></code> for normalizing the datasets.</li>
+<li>Download raw <code class="docutils literal"><span class="pre">mat</span></code> files from an openBIS instance or where ever your data lie. The <code class="docutils literal"><span class="pre">mat</span></code> files are supposed to be created by <code class="docutils literal"><span class="pre">CellProfiler</span></code>, i.e. platewise data-sets, where every file describes a single features for single-cells.</li>
+<li>Parse the downloaded data using <code class="docutils literal"><span class="pre">rnai-parse</span></code>: install the package, and process as described in the package folder. This generates a list of raw <code class="docutils literal"><span class="pre">tsv</span></code> files or a bundled <code class="docutils literal"><span class="pre">h5</span></code> file. Until now the parser writes featuresets for <em>cells</em>, <em>perinuclei</em>, <em>nuclei</em>,  <em>expandednuclei</em>,  <em>bacteria</em> and <cite>invasomes</cite>.</li>
+<li>Query the meta DB using <code class="docutils literal"><span class="pre">rnai-query</span></code> and create and combine datasets. For that first meta files generated from the step above are written into a database. Then the DB can be queried against to subset single genes, sirnas, pathogens, etc. efficiently.</li>
+<li>Normalize your data using <code class="docutils literal"><span class="pre">rnai-normalize</span></code>.</li>
+<li>To come: <code class="docutils literal"><span class="pre">rnai-analyse</span></code> for analysing large-scale RNAi screens.</li>
 </ul>
 <p>The package is still under development, so if you&#8217;d like to contribute,
 <a class="reference external" href="https://github.com/cbg-ethz/rnaiutilities">fork us on GitHub</a>.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Make sure to have <code class="docutils literal"><span class="pre">python3</span></code> installed. <code class="docutils literal"><span class="pre">rnaiutilities</span></code> does not support
+previous versions. The best way to do that is to download <a class="reference external" href="https://www.continuum.io/downloads">anaconda</a> and create a
+virtual <a class="reference external" href="https://conda.io/docs/using/envs.html">environment</a>.</p>
+<p>Download the latest <a class="reference external" href="https://github.com/cbg-ethz/rnaiutilities/releases">release</a> first and install it using:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install .
+</pre></div>
+</div>
+<p>If you get errors, I probably forgot some dependency.</p>
+</div>
 <div class="section" id="command-line-scripts">
 <h2>Command line scripts<a class="headerlink" href="#command-line-scripts" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -87,7 +108,8 @@ functionalities:</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper"><p class="logo">
   <a href="#">
-    <img src="/rnaiutilities/_static/fig_single_cells.jpg" title="rnaiutilities"/>
+    <img src="_static/fig_single_cells.jpg"
+         title="rnaiutilities"/>
   </a>
 </p><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
@@ -175,7 +197,8 @@ functionalities:</p>
       
     </div>
 
-   
+    
+
     
   </body>
 </html>
