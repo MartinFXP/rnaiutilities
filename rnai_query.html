@@ -27,7 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="rnai-normalize" href="rnai_normalize.html" />
+    <link rel="next" title="Parser" href="api.html" />
     <link rel="prev" title="rnai-parse" href="rnai_parse.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -78,8 +78,10 @@ querying the data and creating datasets.</p>
 <p>Having the database set up, we can query it and create custom
 single-cell data-sets by filtering on meta information. As a motivating
 example consider these two scripts:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db --sample <span class="m">10</span> OUTFILE
-rnai-query query --db /i/am/a/file/called/tix.db --plate dz05-1e --gene pik3ca OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db
+                 --sample <span class="m">10</span> OUTFILE
+rnai-query query --db /i/am/a/file/called/tix.db
+                 --plate dz05-1e --gene pik3ca OUTFILE
 </pre></div>
 </div>
 <p>The first query would return 10 single cells randomly sampled from each well
@@ -98,9 +100,11 @@ respective command line arguments:</p>
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
+<kbd><span class="option">--normalize</span></kbd></td>
+<td>The normalization methods to use, e.g. like &#8216;zscore&#8217; or a comma-separated string of normalisations such as &#8216;bscore,loess,zscore&#8217;. <strong>Defaults to &#8216;zscore&#8217;</strong>. If you do <strong>not</strong> want to normalize you need to explicitely set to &#8216;none&#8217;.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--study</span></kbd></td>
-<td>The study to query for, e.g. like &#8216;infectx&#8217;, or a comma-separated string
-of libraries, such as &#8216;infectx,infectx_published&#8217;.</td></tr>
+<td>The study to query for, e.g. like &#8216;infectx&#8217;, or a comma-separated string of libraries, such as &#8216;infectx,infectx_published&#8217;.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pathogen</span></kbd></td>
 <td>The pathogen to query for, e.g. like &#8216;adeno&#8217;, or a comma-separated string of pathogens, such as &#8216;adeno, bartonella&#8217;.</td></tr>
@@ -133,7 +137,7 @@ of libraries, such as &#8216;infectx,infectx_published&#8217;.</td></tr>
 <td>The amount of single cells that are sampled per well,like &#8216;100&#8217;. If unset defaults to all cells.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--debug</span></kbd></td>
-<td>Dont write the files, put only print debug information.</td></tr>
+<td>Dont write the files, but only print debug information.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--help</span></kbd></td>
 <td>Print a help message.</td></tr>
@@ -145,23 +149,26 @@ of libraries, such as &#8216;infectx,infectx_published&#8217;.</td></tr>
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>Here, we show some examples how you can query. In these examples we use a
 <em>SQLite</em> database called <code class="docutils literal"><span class="pre">database.db</span></code>.</p>
-<p>Sample 100 cells from every well for every plate and write to <em>OUTFILE</em>.</p>
+<p>Sample 100 cells from every well for every plate and write <strong>standardized</strong> data
+to <em>OUTFILE</em>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
                  --sample <span class="m">100</span>
                  OUTFILE
 </pre></div>
 </div>
-<p>Filter by pathogens <em>shigella</em> and <em>bartonella</em> and write to <em>OUTFILE</em>.</p>
+<p>Filter by pathogens <em>shigella</em> and <em>bartonella</em> and write <strong>standardized</strong> data
+to <em>OUTFILE</em>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
                  --pathogen shigella,bartonella
                  OUTFILE
 </pre></div>
 </div>
 <p>Filter by pathogens <em>Shigella</em> and <em>Bartonella</em> and gene <em>pik3ca</em> and write
-to <em>OUTFILE</em>.</p>
+standardized data to <em>OUTFILE</em>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
                  --pathogen shigella,bartonella
                  --gene pik3ca
+                 --normalize zscore
                  OUTFILE
 </pre></div>
 </div>
@@ -175,19 +182,21 @@ write debug info.</p>
 </pre></div>
 </div>
 <p>Filter by gene <em>nfkb1</em>, pathogen <em>Shigella</em>, study <em>infectx</em>, <em>pooled</em>
-designs, sample 1000 cells per well and write to output</p>
+designs, sample 1000 cells per well and write <em>un-normalized</em> data to <em>OUTFILE</em>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
                  --gene nfkb1
                  --pathogen shigella
                  --study infectx
                  --design p
                  --sample <span class="m">1000</span>
+                 --normalize none
                  OUTFILE
 </pre></div>
 </div>
 <p>Filter by gene <em>pik3ca</em> and <em>mock</em>, feature classes <em>cells</em> and <em>perinuclei</em>,
 pathogens <em>Shigella</em> and <em>Bartonella</em>, library <em>Dharmacon</em> with a <em>pooled</em>
-siRNA design, sample 100 cells from each well and write to <em>OUTFILE</em>.</p>
+siRNA design, sample 100 cells from each well and write <strong>standardized</strong> data
+to <em>OUTFILE</em>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db
                  --featureclass cells,perinuclei
                  --gene pik3ca,mock
@@ -217,7 +226,7 @@ would call</p>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">select</span></code> takes the same filters as <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">query</span></code>, except
-<em>sample</em>, and <em>debug</em>, so check section <a class="reference internal" href="#cmdlineargs-label"><span class="std std-ref">Command line arguments</span></a>.</p>
+<em>sample</em>, <em>normalize</em> and <em>debug</em>, so check section <a class="reference internal" href="#cmdlineargs-label"><span class="std std-ref">Command line arguments</span></a>.</p>
 <div class="section" id="id1">
 <h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Here, we show some examples how you can select variables. In these examples we
@@ -239,12 +248,12 @@ use a <em>SQLite</em> database called <code class="docutils literal"><span class
 <p>Select pathogens for which <em>pik3ca</em> and <em>mock</em>, feature classes <em>cells</em>
 and <em>perinuclei</em>, library <em>Dharmacon</em> with a <em>pooled</em> siRNA design are
 available.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db
-                 --featureclass cells,perinuclei
-                 --gene pik3ca,mock
-                 --library d
-                 --design p
-                 pathogen
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --db /i/am/a/file/called/tix.db
+                  --featureclass cells,perinuclei
+                  --gene pik3ca,mock
+                  --library d
+                  --design p
+                  pathogen
 </pre></div>
 </div>
 </div>
@@ -277,12 +286,10 @@ available.</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rnai_normalize.html">rnai-normalize</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
 </ul>
 

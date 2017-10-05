@@ -1,27 +1,41 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>rnaiutilities</title>
     
-    <link rel="stylesheet" href="/rnaiutilities/_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="/rnaiutilities/_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="/rnaiutilities/_static/jquery.js"></script>
-    <script type="text/javascript" src="/rnaiutilities/_static/underscore.js"></script>
-    <script type="text/javascript" src="/rnaiutilities/_static/doctools.js"></script>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="rnai-parse" href="rnai_parse.html" />
    
-  <link rel="stylesheet" href="/rnaiutilities/_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
- <body role="document">
+  <body role="document">
   
 
     <div class="document">
@@ -44,9 +58,8 @@
 <p>The packages are designed for the following workflow:</p>
 <ul class="simple">
 <li>Download raw <code class="docutils literal"><span class="pre">mat</span></code> files from an openBIS instance or where ever your data lie. The <code class="docutils literal"><span class="pre">mat</span></code> files are supposed to be created by <code class="docutils literal"><span class="pre">CellProfiler</span></code>, i.e. platewise data-sets, where every file describes a single features for single-cells.</li>
-<li>Parse the downloaded data using <code class="docutils literal"><span class="pre">rnai-parse</span></code>: install the package, and process as described in the package folder. This generates a list of raw <code class="docutils literal"><span class="pre">tsv</span></code> files or a bundled <code class="docutils literal"><span class="pre">h5</span></code> file. Until now the parser writes featuresets for <em>cells</em>, <em>perinuclei</em>, <em>nuclei</em>,  <em>expandednuclei</em>,  <em>bacteria</em> and <cite>invasomes</cite>.</li>
-<li>Query the meta DB using <code class="docutils literal"><span class="pre">rnai-query</span></code> and create and combine datasets. For that first meta files generated from the step above are written into a database. Then the DB can be queried against to subset single genes, sirnas, pathogens, etc. efficiently.</li>
-<li>Normalize your data using <code class="docutils literal"><span class="pre">rnai-normalize</span></code>.</li>
+<li>Parse the downloaded data using <code class="docutils literal"><span class="pre">rnai-parse</span></code>: install the package, and process as described in the package folder. This generates a list of raw <code class="docutils literal"><span class="pre">tsv</span></code> files or a bundled <code class="docutils literal"><span class="pre">h5</span></code> file. Until now the parser writes featuresets for <em>cells</em>, <em>perinuclei</em>, <em>nuclei</em>,  <em>expandednuclei</em>,  <em>bacteria</em> and <em>invasomes</em>.</li>
+<li>Query the meta DB using <code class="docutils literal"><span class="pre">rnai-query</span></code> and create and combine datasets. For that first meta files generated from the step above are written into a database. Then the DB can be queried against to subset single <em>genes</em>, <em>sirnas</em>, <em>pathogens</em>, etc. and write the <em>normalized</em> results.</li>
 <li>To come: <code class="docutils literal"><span class="pre">rnai-analyse</span></code> for analysing large-scale RNAi screens.</li>
 </ul>
 <p>The package is still under development, so if you&#8217;d like to contribute,
@@ -81,10 +94,6 @@ virtual <a class="reference external" href="https://conda.io/docs/using/envs.htm
 <li class="toctree-l2"><a class="reference internal" href="rnai_query.html#selecting-single-variables-from-the-database">Selecting single variables from the database</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rnai_normalize.html">rnai-normalize</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rnai_normalize.html#normalizing-data-by-standardization">Normalizing data by standardization</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -94,7 +103,6 @@ virtual <a class="reference external" href="https://conda.io/docs/using/envs.htm
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
 </ul>
 </div>
@@ -120,12 +128,10 @@ virtual <a class="reference external" href="https://conda.io/docs/using/envs.htm
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="rnai_parse.html">rnai-parse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rnai_normalize.html">rnai-normalize</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#normalizer">Normalizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
 </ul>
 
