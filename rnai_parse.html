@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>rnai-parse</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -24,7 +21,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="rnai-query" href="rnai_query.html" />
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -62,7 +59,7 @@ are available:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">rnai-parse</span> <span class="pre">checkdownload</span></code> for checking if all files are present correctly,</li>
 <li><code class="docutils literal"><span class="pre">rnai-parse</span> <span class="pre">parse</span></code> for parsing the data,</li>
-<li><code class="docutils literal"><span class="pre">rnai-parse</span> <span class="pre">report</span></code> for creating a report of parsed files,</li>
+<li><code class="docutils literal"><span class="pre">rnai-parse</span> <span class="pre">parsereport</span></code> for creating a report of parsed files,</li>
 <li><code class="docutils literal"><span class="pre">rnai-parse</span> <span class="pre">featuresets</span></code> for creating feature set overlap statistics.</li>
 </ul>
 <p><strong>The subcommands are needed to be called consecutively.</strong> So you need to
@@ -75,8 +72,9 @@ with the following content:</p>
 <div class="code-block-caption"><span class="caption-text">Contents of <code class="docutils literal"><span class="pre">config.yml</span></code> file</span><a class="headerlink" href="#config-yml" title="Permalink to this code">¶</a></div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">layout_file</span><span class="p">:</span> <span class="s2">&quot;layout.tsv&quot;</span>
 <span class="n">plate_folder</span><span class="p">:</span> <span class="s2">&quot;./&quot;</span>
-<span class="n">output_path</span><span class="p">:</span> <span class="s2">&quot;./&quot;</span>
+<span class="n">output_path</span><span class="p">:</span> <span class="s2">&quot;./out&quot;</span>
 <span class="n">plate_id_file</span><span class="p">:</span> <span class="s2">&quot;experiment_meta_file.tsv&quot;</span>
+<span class="n">plate_regex</span><span class="p">:</span> <span class="s1">&#39;.*\/\w+\-\w[P|U]\-[G|K]\d+(-\w+)*\/.*&#39;</span>
 <span class="n">multiprocessing</span><span class="p">:</span> <span class="kc">False</span>
 </pre></div>
 </div>
@@ -86,7 +84,8 @@ with the following content:</p>
 <em>plate_folder</em> points to the collection of matlab files, <em>output_path</em> is
 the target directory where files are written to. <em>plate_id_file</em> is a list
 of ids of plates that are going to be parsed in case only a subset of
-<em>plate_folder</em> should get parsed. <em>multiprocessing</em> is a boolean
+<em>plate_folder</em> should get parsed. <em>plate_regex</em> is a pattern which plates you
+want to use in the <em>plate_id*file</em>. <em>multiprocessing</em> is a boolean
 determining whether python uses multiple processes or not.</p>
 <p>Check out the <a class="reference external" href="https://github.com/cbg-ethz/rnaiutilities/tree/master/data">data</a> folder in the main repository for some example
 datasets. The folder contains an example data-set for the pathogen
@@ -120,7 +119,7 @@ a specific channel, like DAPI.</p>
 <h2>Generating a report<a class="headerlink" href="#generating-a-report" title="Permalink to this headline">¶</a></h2>
 <p>If parsing is complete, you can create a report if all files have been parsed
 or if some are missing:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-parse report CONFIG
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-parse parsereport CONFIG
 </pre></div>
 </div>
 <dl class="docutils">

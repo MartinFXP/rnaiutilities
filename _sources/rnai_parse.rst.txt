@@ -19,7 +19,7 @@ are available:
 
 * ``rnai-parse checkdownload`` for checking if all files are present correctly,
 * ``rnai-parse parse`` for parsing the data,
-* ``rnai-parse report`` for creating a report of parsed files,
+* ``rnai-parse parsereport`` for creating a report of parsed files,
 * ``rnai-parse featuresets`` for creating feature set overlap statistics.
 
 **The subcommands are needed to be called consecutively.** So you need to
@@ -34,8 +34,8 @@ with the following content:
 
 
 .. literalinclude:: ../../data/config.yml
-    :caption: Contents of ``config.yml`` file
-    :name: config.yml
+  :caption: Contents of ``config.yml`` file
+  :name: config.yml
 
 You can have a look at an example yaml file `here <https://github.com/cbg-ethz/rnaiutilities/blob/master/data/config.yml>`_.
 
@@ -44,7 +44,8 @@ You can have a look at an example yaml file `here <https://github.com/cbg-ethz/r
 *plate_folder* points to the collection of matlab files, *output_path* is
 the target directory where files are written to. *plate_id_file* is a list
 of ids of plates that are going to be parsed in case only a subset of
-*plate_folder* should get parsed. *multiprocessing* is a boolean
+*plate_folder* should get parsed. *plate_regex* is a pattern which plates you
+want to use in the *plate_id*file*. *multiprocessing* is a boolean
 determining whether python uses multiple processes or not.
 
 Check out the `data`_ folder in the main repository for some example
@@ -95,7 +96,7 @@ or if some are missing:
 
 .. code-block:: bash
 
-  rnai-parse report CONFIG
+  rnai-parse parsereport CONFIG
 
 The report is similar to ``rnai-parse checkdownload``, only that this time we
  check if every file has been parsed correctly and meta files have been

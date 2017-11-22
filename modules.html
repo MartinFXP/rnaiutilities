@@ -1,0 +1,302 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Query module</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parser" href="api.html" />
+    <link rel="prev" title="rnai-query" href="rnai_query.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-rnaiutilities.query">
+<span id="query-module"></span><h1>Query module<a class="headerlink" href="#module-rnaiutilities.query" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rnaiutilities.query.Query">
+<em class="property">class </em><code class="descclassname">rnaiutilities.query.</code><code class="descname">Query</code><span class="sig-paren">(</span><em>db=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query.html#Query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query.Query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for querying a database and composing result sets.</p>
+<dl class="method">
+<dt id="rnaiutilities.query.Query.compose">
+<code class="descname">compose</code><span class="sig-paren">(</span><em>from_file=None</em>, <em>study=None</em>, <em>pathogen=None</em>, <em>library=None</em>, <em>design=None</em>, <em>replicate=None</em>, <em>plate=None</em>, <em>gene=None</em>, <em>sirna=None</em>, <em>well=None</em>, <em>featureclass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query.html#Query.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query.Query.compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query a database of image-based RNAi screening features for cells/bacteria/nuclei.
+The query can use filters, so that only a subset is selected.
+A lazy result set is returned, i.e. a set of plate files that meets the
+filtered criteria.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>from_file</strong> – file argument from <cite>Query.query</cite> to avoid excessive
+data base access. If not given does normal query. If given only uses
+from_file argument</li>
+<li><strong>study</strong> – filters by study, e.g.
+‘infectx’/’group_cossart’/’infectx_published’</li>
+<li><strong>pathogen</strong> – filters by pathogen, e.g.
+‘salmonella’/’adeno’/’bartonella’/’brucella’/’listeria’</li>
+<li><strong>library</strong> – filters by library, e.g. ‘a’/’d’/’q’</li>
+<li><strong>design</strong> – filters by design, e.g.: ‘p’/’u’</li>
+<li><strong>replicate</strong> – filters by replicate, i.e. a number</li>
+<li><strong>plate</strong> – filters by plate, i.e.: ‘dz44-1l’</li>
+<li><strong>gene</strong> – filters by gene, i.e.: ‘star’</li>
+<li><strong>sirna</strong> – filters by gene, i.e.: ‘l-019369-00’</li>
+<li><strong>well</strong> – filters by gene, i.e.: ‘a01’</li>
+<li><strong>featureclass</strong> – filters by featureclass,
+e.g. ‘nuclei’/’cells’/’bacteria’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">returns a lazy QueryResult</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#rnaiutilities.query_result.QueryResult" title="rnaiutilities.query_result.QueryResult">QueryResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.query.Query.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query.html#Query.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query.Query.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert meta information of an platewise RNAi screen to a database.
+For insertion the path leading to the meta files has to be provided.
+Meta information is then written to either a sqlite database if <cite>db</cite>
+is set, otherwise the DB connection defaults to a postgres DB that
+listens on port 5432.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – the folder to the meta files</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.query.Query.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>study=None</em>, <em>pathogen=None</em>, <em>library=None</em>, <em>design=None</em>, <em>replicate=None</em>, <em>plate=None</em>, <em>featureclass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query.html#Query.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query.Query.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query a database of image-based RNAi screening features for
+cells/bacteria/nuclei. The result will be printed to stdout.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>study</strong> – filters by study, e.g.
+‘infectx’/’group_cossart’/’infectx_published’</li>
+<li><strong>pathogen</strong> – filters by pathogen, e.g.
+‘salmonella’/’adeno’/’bartonella’/’brucella’/’listeria’</li>
+<li><strong>library</strong> – filters by library, e.g. ‘a’/’d’/’q’</li>
+<li><strong>design</strong> – filters by design, e.g.: ‘p’/’u’</li>
+<li><strong>replicate</strong> – filters by replicate, i.e. a number</li>
+<li><strong>plate</strong> – filters by plate, i.e.: ‘dz44-1l’</li>
+<li><strong>featureclass</strong> – filters by featureclass,
+e.g. ‘nuclei’/’cells’/’bacteria’</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.query.Query.select">
+<code class="descname">select</code><span class="sig-paren">(</span><em>select</em>, <em>study=None</em>, <em>pathogen=None</em>, <em>library=None</em>, <em>design=None</em>, <em>replicate=None</em>, <em>plate=None</em>, <em>gene=None</em>, <em>sirna=None</em>, <em>well=None</em>, <em>featureclass=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query.html#Query.select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query.Query.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submits a select query to a database of image-based RNAi screening meta
+features to get an overview over meta information. The query returns
+the result as a list of strings.</p>
+<dl class="docutils">
+<dt>Parameter <em>select</em> can be any of the following choices:</dt>
+<dd><ul class="first last simple">
+<li>study</li>
+<li>pathogen</li>
+<li>library</li>
+<li>design</li>
+<li>gene</li>
+<li>sirna</li>
+<li>well</li>
+<li>featureclass</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>select</strong> (<em>str</em>) – the meta feature to select</li>
+<li><strong>study</strong> (<em>str</em>) – filters by study, e.g.
+‘infectx’/’group_cossart’/’infectx_published’</li>
+<li><strong>pathogen</strong> (<em>str</em>) – filters by pathogen, e.g.
+‘salmonella’/’adeno’/’bartonella’/’brucella’/’listeria’</li>
+<li><strong>library</strong> (<em>str</em>) – filters by library, e.g. ‘a’/’d’/’q’</li>
+<li><strong>design</strong> (<em>str</em>) – filters by design, e.g.: ‘p’/’u’</li>
+<li><strong>replicate</strong> (<em>str</em>) – filters by replicate, i.e. a number</li>
+<li><strong>plate</strong> (<em>str</em>) – filters by plate, i.e.: ‘dz44-1l’</li>
+<li><strong>gene</strong> (<em>str</em>) – filters by gene, i.e.: ‘star’</li>
+<li><strong>sirna</strong> – filters by gene, i.e.: ‘l-019369-00’</li>
+<li><strong>sirna</strong> – filters by gene, i.e.: ‘a01’</li>
+<li><strong>featureclass</strong> (<em>str</em>) – filters by featureclass,
+e.g. ‘nuclei’/’cells’/’bacteria’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">returns a list of strings from the query</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rnaiutilities.query_result">
+<span id="queryresult-module"></span><h1>QueryResult module<a class="headerlink" href="#module-rnaiutilities.query_result" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rnaiutilities.query_result.QueryResult">
+<em class="property">class </em><code class="descclassname">rnaiutilities.query_result.</code><code class="descname">QueryResult</code><span class="sig-paren">(</span><em>tablefile_sets</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query_result.html#QueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query_result.QueryResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of results derived from a database query.</p>
+<dl class="method">
+<dt id="rnaiutilities.query_result.QueryResult.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><em>sample</em>, <em>normalize</em>, <em>fh=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/query_result.html#QueryResult.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.query_result.QueryResult.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the result set of the database query to tsv or stdout. If a string
+is given as param <em>fh</em> prints to file, otherwise if None is given prints
+to stdout.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample</strong> – number of samples to draw from every well or None</li>
+<li><strong>sample</strong> – int or None</li>
+<li><strong>normalize</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – a list of normalisation methods to use, e.g. like
+‘zscore’. Options so far are ‘bscore’, ‘loess’ and ‘zscore’.</li>
+<li><strong>fh</strong> (<em>str</em>) – name of the file or None</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rnaiutilities.parser">
+<span id="parser-module"></span><h1>Parser module<a class="headerlink" href="#module-rnaiutilities.parser" title="Permalink to this headline">¶</a></h1>
+<p>Main module (entry point) for parsing feature files and computing statistics
+regarding download/parsing.</p>
+<dl class="class">
+<dt id="rnaiutilities.parser.Parser">
+<em class="property">class </em><code class="descclassname">rnaiutilities.parser.</code><code class="descname">Parser</code><span class="sig-paren">(</span><em>config: rnaiutilities.config.Config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/parser.html#Parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.parser.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for parsing a folder of plates containing matlab files for the
+features.</p>
+<dl class="method">
+<dt id="rnaiutilities.parser.Parser.download_statistics">
+<code class="descname">download_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/parser.html#Parser.download_statistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.parser.Parser.download_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes download statistics if all files given in config have been
+downloaded correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.parser.Parser.featureset_statistics">
+<code class="descname">featureset_statistics</code><span class="sig-paren">(</span><em>outfile</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/parser.html#Parser.featureset_statistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.parser.Parser.featureset_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Computes statistics between all possible screens for pairwise feature</dt>
+<dd>overlaps. The overlaps can be taken to decide which screens to include.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.parser.Parser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/parser.html#Parser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.parser.Parser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the plate file sets into raw tsv files.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rnaiutilities.parser.Parser.parse_statistics">
+<code class="descname">parse_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rnaiutilities/parser.html#Parser.parse_statistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rnaiutilities.parser.Parser.parse_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes parsing statistics.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img src="_static/fig_single_cells.jpg"
+         title="rnaiutilities"/>
+  </a>
+</p><h3><a href="index.html">Home</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rnai_parse.html">rnai-parse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Query module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-rnaiutilities.query_result">QueryResult module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-rnaiutilities.parser">Parser module</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Simon Dirmeier.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

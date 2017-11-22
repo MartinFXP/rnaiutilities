@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>rnai-query</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -24,7 +21,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Parser" href="api.html" />
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -56,7 +53,7 @@ and compile different data-sets.</p>
 are used. So far the following subcommands are available:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">insert</span></code> for inserting meta information to a database,</li>
-<li><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">query</span></code> for creating datasets,</li>
+<li><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">compose</span></code> for querying from the database and composing data sets,</li>
 <li><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">select</span></code> for selecting single variables from the database.</li>
 </ul>
 <p><strong>The steps have to be taken in succession (or at least insert has to be the first command to be executed), so make sure to read it all</strong>.</p>
@@ -64,7 +61,7 @@ are used. So far the following subcommands are available:</p>
 <h2>Inserting meta information<a class="headerlink" href="#inserting-meta-information" title="Permalink to this headline">¶</a></h2>
 <p>Before being able query the database, we need to insert the parsed meta files.
 We can to that by calling:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query insert --db /i/am/a/file/called/tix.db
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query insert /i/am/a/file/called/tix.db
                   /i/am/a/path/to/parsed/data
 </pre></div>
 </div>
@@ -78,21 +75,21 @@ querying the data and creating datasets.</p>
 <p>Having the database set up, we can query it and create custom
 single-cell data-sets by filtering on meta information. As a motivating
 example consider these two scripts:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db
-                 --sample <span class="m">10</span> OUTFILE
-rnai-query query --db /i/am/a/file/called/tix.db
-                 --plate dz05-1e --gene pik3ca OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --sample <span class="m">10</span> /i/am/a/file/called/tix.db OUTFILE
+rnai-query compose --plate dz05-1e --gene pik3ca
+                   /i/am/a/file/called/tix.db
+                   OUTFILE
 </pre></div>
 </div>
 <p>The first query would return 10 single cells randomly sampled from each well
 from all plates and write it to the file <cite>OUTFILE</cite>. The second query would
 only look at plate <em>dz05-1e</em> and gene <em>pik3ca</em> and write the single cells
 that fit the criteria to <cite>OUTFILE</cite>.</p>
-<p>The next sections walk you through using <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">query</span></code>.</p>
+<p>The next sections walk you through using <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">compose</span></code>.</p>
 <div class="section" id="command-line-arguments">
 <span id="cmdlineargs-label"></span><h3>Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h3>
 <p>Say we would want to filter the database on some critera and only write the
-single-cell features that fit these conditions. Using <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">query</span></code> you
+single-cell features that fit these conditions. Using <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">compose</span></code> you
 can choose which plates/gene/sirnas/etc. to choose from, by setting the
 respective command line arguments:</p>
 <table class="docutils option-list" frame="void" rules="none">
@@ -101,40 +98,40 @@ respective command line arguments:</p>
 <tbody valign="top">
 <tr><td class="option-group">
 <kbd><span class="option">--normalize</span></kbd></td>
-<td>The normalization methods to use, e.g. like &#8216;zscore&#8217; or a comma-separated string of normalisations such as &#8216;bscore,loess,zscore&#8217;. <strong>Defaults to &#8216;zscore&#8217;</strong>. If you do <strong>not</strong> want to normalize you need to explicitely set to &#8216;none&#8217;.</td></tr>
+<td>The normalization methods to use, e.g. like ‘zscore’ or a comma-separated string of normalisations such as ‘bscore,loess,zscore’. <strong>Defaults to ‘zscore’</strong>. If you do <strong>not</strong> want to normalize you need to explicitely set to ‘none’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--study</span></kbd></td>
-<td>The study to query for, e.g. like &#8216;infectx&#8217;, or a comma-separated string of libraries, such as &#8216;infectx,infectx_published&#8217;.</td></tr>
+<td>The study to query for, e.g. like ‘infectx’, or a comma-separated string of libraries, such as ‘infectx,infectx_published’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pathogen</span></kbd></td>
-<td>The pathogen to query for, e.g. like &#8216;adeno&#8217;, or a comma-separated string of pathogens, such as &#8216;adeno, bartonella&#8217;.</td></tr>
+<td>The pathogen to query for, e.g. like ‘adeno’, or a comma-separated string of pathogens, such as ‘adeno, bartonella’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--library</span></kbd></td>
-<td>The library to query for, e.g. like &#8216;d&#8217;, or a comma-separated string of libraries, such as &#8216;d,q&#8217;.</td></tr>
+<td>The library to query for, e.g. like ‘d’, or a comma-separated string of libraries, such as ‘d,q’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--plate</span></kbd></td>
-<td>The plate to query for, e.g. like &#8216;dz03-1k&#8217;, or a comma-separated string of plates, such as &#8216;dz03-1k,dz04-1k&#8217;.</td></tr>
+<td>The plate to query for, e.g. like ‘dz03-1k’, or a comma-separated string of plates, such as ‘dz03-1k,dz04-1k’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--design</span></kbd></td>
-<td>The design to query for, e.g. like &#8216;p&#8217;.</td></tr>
+<td>The design to query for, e.g. like ‘p’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--replicate</span></kbd></td>
-<td>The replicate to query for, e.g. like &#8216;1&#8217;, or a comma-separated string of replicates, such as &#8216;1,4&#8217;.</td></tr>
+<td>The replicate to query for, e.g. like ‘1’, or a comma-separated string of replicates, such as ‘1,4’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--gene</span></kbd></td>
-<td>The gene to query for, e.g. like &#8216;pik3ca&#8217;, or a comma-separated string of genes, such as &#8216;pik3ca,pik4ca&#8217;.</td></tr>
+<td>The gene to query for, e.g. like ‘pik3ca’, or a comma-separated string of genes, such as ‘pik3ca,pik4ca’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--sirna</span></kbd></td>
-<td>The sirna to query for, e.g. like &#8216;s12312&#8217;, or a comma-separated string of sirnas, such as &#8216;s12312,s123112&#8217;.</td></tr>
+<td>The sirna to query for, e.g. like ‘s12312’, or a comma-separated string of sirnas, such as ‘s12312,s123112’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--well</span></kbd></td>
-<td>The well to query for, e.g. like &#8216;a01&#8217;, or a comma-separated string of wells, such as &#8216;a01,l05&#8217;.</td></tr>
+<td>The well to query for, e.g. like ‘a01’, or a comma-separated string of wells, such as ‘a01,l05’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--featureclass</span></kbd></td>
-<td>The featureclass to query for, e.g. like &#8216;cells&#8217; or a or a comma-separated string of cells, such as &#8216;cells,perinuclei,nuclei&#8217;.</td></tr>
+<td>The featureclass to query for, e.g. like ‘cells’ or a or a comma-separated string of cells, such as ‘cells,perinuclei,nuclei’.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--sample</span></kbd></td>
-<td>The amount of single cells that are sampled per well,like &#8216;100&#8217;. If unset defaults to all cells.</td></tr>
+<td>The amount of single cells that are sampled per well,like ‘100’. If unset defaults to all cells.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--debug</span></kbd></td>
 <td>Dont write the files, but only print debug information.</td></tr>
@@ -151,60 +148,54 @@ respective command line arguments:</p>
 <em>SQLite</em> database called <code class="docutils literal"><span class="pre">database.db</span></code>.</p>
 <p>Sample 100 cells from every well for every plate and write <strong>standardized</strong> data
 to <em>OUTFILE</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
-                 --sample <span class="m">100</span>
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --sample <span class="m">100</span>
+                   database.db OUTFILE
 </pre></div>
 </div>
 <p>Filter by pathogens <em>shigella</em> and <em>bartonella</em> and write <strong>standardized</strong> data
 to <em>OUTFILE</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
-                 --pathogen shigella,bartonella
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --pathogen shigella,bartonella
+                   database.db OUTFILE
 </pre></div>
 </div>
 <p>Filter by pathogens <em>Shigella</em> and <em>Bartonella</em> and gene <em>pik3ca</em> and write
 standardized data to <em>OUTFILE</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
-                 --pathogen shigella,bartonella
-                 --gene pik3ca
-                 --normalize zscore
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --pathogen shigella,bartonella
+                   --gene pik3ca
+                   --normalize zscore
+                   database.db OUTFILE
 </pre></div>
 </div>
 <p>Filter by pathogens <em>Shigella</em> and <em>Bartonella</em> and gene <em>pik3ca</em> and only
 write debug info.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
-                 --pathogen shigella,bartonella
-                 --gene pik3ca
-                 --debug
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --pathogen shigella,bartonella
+                   --gene pik3ca
+                   --debug
+                   database.db OUTFILE
 </pre></div>
 </div>
 <p>Filter by gene <em>nfkb1</em>, pathogen <em>Shigella</em>, study <em>infectx</em>, <em>pooled</em>
 designs, sample 1000 cells per well and write <em>un-normalized</em> data to <em>OUTFILE</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db database.db
-                 --gene nfkb1
-                 --pathogen shigella
-                 --study infectx
-                 --design p
-                 --sample <span class="m">1000</span>
-                 --normalize none
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose  --gene nfkb1
+                    --pathogen shigella
+                    --study infectx
+                    --design p
+                    --sample <span class="m">1000</span>
+                    --normalize none
+                    database.db OUTFILE
 </pre></div>
 </div>
 <p>Filter by gene <em>pik3ca</em> and <em>mock</em>, feature classes <em>cells</em> and <em>perinuclei</em>,
 pathogens <em>Shigella</em> and <em>Bartonella</em>, library <em>Dharmacon</em> with a <em>pooled</em>
 siRNA design, sample 100 cells from each well and write <strong>standardized</strong> data
 to <em>OUTFILE</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query query --db /i/am/a/file/called/tix.db
-                 --featureclass cells,perinuclei
-                 --gene pik3ca,mock
-                 --library d
-                 --design p
-                 --pathogen shigella,bartonella
-                 --sample <span class="m">100</span>
-                 OUTFILE
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query compose --featureclass cells,perinuclei
+                   --gene pik3ca,mock
+                   --library d
+                   --design p
+                   --pathogen shigella,bartonella
+                   --sample <span class="m">100</span>
+                   database.db OUTFILE
 </pre></div>
 </div>
 </div>
@@ -217,43 +208,40 @@ writing them to a file, for instance</p>
 <li>if we want to see which genes are available for a pathogen,</li>
 <li>to see which libraries are available for a pathogen,</li>
 <li>to see which plates carry which genes,</li>
-<li>...</li>
+<li>…</li>
 </ul>
 <p>We can use <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">select</span></code> for this kind of question. For example, if
 we are interested in finding which genes are available on plate <em>dz05-1e</em>, we
 would call</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --plate dz05-1e gene
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --plate dz05-1e database.db gene
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">select</span></code> takes the same filters as <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">query</span></code>, except
+<p><code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">select</span></code> takes the same filters as <code class="docutils literal"><span class="pre">rnai-query</span> <span class="pre">compose</span></code>, except
 <em>sample</em>, <em>normalize</em> and <em>debug</em>, so check section <a class="reference internal" href="#cmdlineargs-label"><span class="std std-ref">Command line arguments</span></a>.</p>
 <div class="section" id="id1">
 <h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Here, we show some examples how you can select variables. In these examples we
 use a <em>SQLite</em> database called <code class="docutils literal"><span class="pre">database.db</span></code>.</p>
 <p>Select which genes are available for pathogens <em>shigella</em> and <em>bartonella</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --db database.db
-                  --pathogen shigella,bartonella
-                  genes
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --pathogen shigella,bartonella
+                  database.db gene
 </pre></div>
 </div>
 <p>Select which libraries are available for pathogens <em>shigella</em> and
 <em>bartonella</em> and gene <em>pik3ca</em>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --db database.db
-                  --pathogen shigella,bartonella
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --pathogen shigella,bartonella
                   --gene pik3ca
-                  library
+                  database.db library
 </pre></div>
 </div>
 <p>Select pathogens for which <em>pik3ca</em> and <em>mock</em>, feature classes <em>cells</em>
 and <em>perinuclei</em>, library <em>Dharmacon</em> with a <em>pooled</em> siRNA design are
 available.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --db /i/am/a/file/called/tix.db
-                  --featureclass cells,perinuclei
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rnai-query <span class="k">select</span> --featureclass cells,perinuclei
                   --gene pik3ca,mock
                   --library d
                   --design p
-                  pathogen
+                  database.db pathogen
 </pre></div>
 </div>
 </div>

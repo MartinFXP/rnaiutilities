@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>rnaiutilities</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -24,7 +21,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="rnai-parse" href="rnai_parse.html" />
@@ -35,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -62,7 +59,7 @@
 <li>Query the meta DB using <code class="docutils literal"><span class="pre">rnai-query</span></code> and create and combine datasets. For that first meta files generated from the step above are written into a database. Then the DB can be queried against to subset single <em>genes</em>, <em>sirnas</em>, <em>pathogens</em>, etc. and write the <em>normalized</em> results.</li>
 <li>To come: <code class="docutils literal"><span class="pre">rnai-analyse</span></code> for analysing large-scale RNAi screens.</li>
 </ul>
-<p>The package is still under development, so if you&#8217;d like to contribute,
+<p>The package is still under development, so if you’d like to contribute,
 <a class="reference external" href="https://github.com/cbg-ethz/rnaiutilities">fork us on GitHub</a>.</p>
 </div>
 <div class="section" id="installation">
@@ -101,9 +98,18 @@ virtual <a class="reference external" href="https://conda.io/docs/using/envs.htm
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Query module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-rnaiutilities.query_result">QueryResult module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-rnaiutilities.parser">Parser module</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
 </ul>
 </div>
 </div>
@@ -130,9 +136,13 @@ virtual <a class="reference external" href="https://conda.io/docs/using/envs.htm
 <li class="toctree-l1"><a class="reference internal" href="rnai_query.html">rnai-query</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Query module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-rnaiutilities.query_result">QueryResult module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#module-rnaiutilities.parser">Parser module</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Parser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#query">Query</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#analyser">Analyser</a></li>
 </ul>
 
 
