@@ -121,7 +121,7 @@ class QueryResult:
             else:
                 raise ValueError("Could not find files: {}".format(
                   ", ".join(tablefileset.filenames)))
-        except ValueError as e:
+        except Exception as e:
             logger.error("Error occured for tablefileset {}: {}"
                          .format(tablefileset.classifier, e))
         return None
