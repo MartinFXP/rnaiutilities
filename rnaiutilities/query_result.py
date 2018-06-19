@@ -111,11 +111,10 @@ class QueryResult:
         try:
             # test if the data files can be found
             if all(os.path.isfile(f) for f in tablefileset.filenames):
-                print(tablefileset.filenames)
                 # read the data files, i.e. cells/nuclei/perinuclei
                 data = self._read(tablefileset)
                 # compile everything together
-                data = self._process(data) # the problem?
+                data = self._process(data)
                 # append study/pathogen/library/...
                 data = self._insert_columns(data, tablefileset)
                 return data
