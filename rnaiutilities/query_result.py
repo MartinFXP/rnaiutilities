@@ -111,10 +111,11 @@ class QueryResult:
         try:
             # test if the data files can be found
             if all(os.path.isfile(f) for f in tablefileset.filenames):
+                print(tablefileset.filenames)
                 # read the data files, i.e. cells/nuclei/perinuclei
                 data = self._read(tablefileset)
                 # compile everything together
-                data = self._process(data)
+                data = self._process(data) # the problem?
                 # append study/pathogen/library/...
                 data = self._insert_columns(data, tablefileset)
                 return data
@@ -239,7 +240,7 @@ class QueryResult:
         # sort columns
         # (this should be a sufficient condition for optimal overlap)
         feat_cols = sorted(feat_cols)
-        data.data = data.data.reindex_axis(
+        data.data = data.data.reindex(
           meta_cols + feat_cols, axis=1, copy=False)
         data.feature_columns = feat_cols
 
