@@ -45,7 +45,7 @@ class DataSet:
 
         self.__data = data
         self.__feature_columns = feature_columns
-        self.__feature_classes  = feature_classes
+        self.__feature_classes = feature_classes
         self.__classifier = classifier
 
     def __str__(self):

@@ -20,9 +20,7 @@
 
 
 import logging
-import pandas
 import pathlib
-
 import sys
 
 from rnaiutilities.data_set import DataSet

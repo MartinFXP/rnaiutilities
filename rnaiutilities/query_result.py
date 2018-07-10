@@ -105,7 +105,7 @@ class QueryResult:
 
     def _compile(self, tablefileset):
         """
-        Dumbs a table file to tsv/h5/stdout.
+        Converts a table file set to a pandas dataframe
         """
 
         try:

@@ -18,15 +18,18 @@
 # @author = 'Simon Dirmeier'
 # @email = 'simon.dirmeier@bsse.ethz.ch'
 
+from rnaiutilities.utility.array import unique
+
 
 class TableFileSet:
     def __init__(self, key, query_result, features, **kwargs):
         self._table_file_set_classifier = key
         f = [x[-1].replace("_meta.tsv", "") for x in query_result]
         self.file_names = unique([el + "_data.tsv" for el in f])
-        self._feature_classes = [x[7] for x in query_result]
-        self._filesuffixes = [x.split("/")[-1] for x in f]
-        self._feature_list_table = [suf.replace("-", "_") for suf in self._filesuffixes]
+        self._feature_classes = unique([x[7] for x in query_result])
+        self._filesuffixes = unique([x.split("/")[-1] for x in f])
+        self._feature_list_table = unique([
+            suf.replace("-", "_") for suf in self._filesuffixes])
         self._features = set(features)
         self._filter = kwargs
         self._study, self._pathogen, self._lib, \

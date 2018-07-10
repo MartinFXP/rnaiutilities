@@ -65,7 +65,7 @@ USABLE_FEATURES = [
     "expandednuclei",
     "invasomes"]
 
-## the later two can probably be combined
+# the latter two can probably be combined
 UNUSED_PLATE_FEATURE_REGEX = re.compile(
   ".*((BACKUP)|(INVASIN)|(OLIGOPROFILE)|(TITRATION)|"
   "(RHINO-TEST)|(1PMOL)).*".upper())

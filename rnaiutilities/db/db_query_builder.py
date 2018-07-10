@@ -37,11 +37,13 @@ class DatabaseQueryBuilder:
     _descr_ = [STUDY, PATHOGEN, LIBRARY, DESIGN, REPLICATE, PLATE, FEATURECLASS]
 
     def build_select_query(self, select, **kwargs):
+        """Translates the user's query into an SQL statement"""
         q = self._build_select_query(select, **kwargs)
         logger.info(q)
         return q
 
     def build_query(self, **kwargs):
+        """Translates the user's query into an SQL statement"""
         q = self._build_file_name_query(**kwargs)
         logger.info(q)
         return q
@@ -67,7 +69,6 @@ class DatabaseQueryBuilder:
                             "\tON (a1.filename = a2.filename);"
         else:
             q = mq + ";"
-        logger.info(q)
 
         return q
 
@@ -171,7 +172,6 @@ class DatabaseQueryBuilder:
             mq = self._build_meta_query(select, **kwargs)
             q = mq + ";"
 
-        logger.info(q)
         return q
 
     @staticmethod

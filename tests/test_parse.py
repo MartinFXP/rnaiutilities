@@ -110,6 +110,8 @@ class TestParser(unittest.TestCase):
 
     def test_data_file_equality(self):
         for f in TestParser.files:
+            print(os.path.join(TestParser.exp_folder, f))
+            print(os.path.join(TestParser.outfolder, f))
             exp_data = pandas.read_csv(
               os.path.join(TestParser.exp_folder, f), sep="\t", header=0)
             parsed_data = pandas.read_csv(

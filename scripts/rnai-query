@@ -165,7 +165,7 @@ def select(select, db, study, pathogen, library, design, replicate, plate,
               help="The amount of single cells that are sampled per well, "
                    "like '100'. If unset defaults to all cells.")
 @click.option("--debug", is_flag=True,
-  help="Print some debug info and skip writing to file.")
+              help="Print some debug info and skip writing to file.")
 def compose(outfile, db, normalize, from_file,
             study, pathogen, library, design, replicate, plate,
             gene, sirna, well,
@@ -173,7 +173,7 @@ def compose(outfile, db, normalize, from_file,
             debug):
     """
     Query and sample single cells or bacteria from a SQLite DB and
-    write to an OUTFILE.
+    compose the sql output as a csv file in OUTFILE.
     """
 
     if debug:
@@ -229,8 +229,8 @@ def compose(outfile, db, normalize, from_file,
 def query(outfile, db, study, pathogen, library, design, replicate, plate,
           featureclass):
     """
-    Query and sample single cells or bacteria from a SQLite DB and write the resultset
-    to OUTFILE.
+    Query the data base for some plates and write the specific plates to
+    OUTFILE.
     """
 
     fls = Query(db).query(study=study,
