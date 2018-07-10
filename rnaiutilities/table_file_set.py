@@ -23,7 +23,7 @@ class TableFileSet:
     def __init__(self, key, query_result, features, **kwargs):
         self._table_file_set_classifier = key
         f = [x[-1].replace("_meta.tsv", "") for x in query_result]
-        self.file_names = list(set([el + "_data.tsv" for el in f]))
+        self.file_names = unique([el + "_data.tsv" for el in f])
         self._feature_classes = [x[7] for x in query_result]
         self._filesuffixes = [x.split("/")[-1] for x in f]
         self._feature_list_table = [suf.replace("-", "_") for suf in self._filesuffixes]
