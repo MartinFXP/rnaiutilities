@@ -254,6 +254,9 @@ class QueryResult:
         well = self.__getattribute__("_" + WELL)
         gene = self.__getattribute__("_" + GENE)
         sirna = self.__getattribute__("_" + SIRNA)
+        well = well.replace("|", "$|^")
+        gene = gene.replace("|", "$|^")
+        sirna = sirna.replace("|", "$|^")
         logger.info("\tfiltering data on well '{}', gene '{}' and sirna '{}'."
                     .format(well, gene, sirna))
         data.data = data.data[
