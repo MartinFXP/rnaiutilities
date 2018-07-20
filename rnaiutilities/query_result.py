@@ -254,9 +254,6 @@ class QueryResult:
         well = self.__getattribute__("_" + WELL)
         gene = self.__getattribute__("_" + GENE)
         sirna = self.__getattribute__("_" + SIRNA)
-        well = well.replace("|", "$|^")
-        gene = gene.replace("|", "$|^")
-        sirna = sirna.replace("|", "$|^")
         logger.info("\tfiltering data on well '{}', gene '{}' and sirna '{}'."
                     .format(well, gene, sirna))
         data.data = data.data[
@@ -281,7 +278,7 @@ class QueryResult:
         for k, v in kwargs.items():
             if k in QueryResult._filter_attributes_:
                 if v is not None:
-                    reg = "^" + "|".join(v.split(",")) + "$"
+                    reg = "^" + "$|^".join(v.split(",")) + "$"
                     # user provided gene/sirna/well regex to match
                     self.__setattr__("_" + k, reg)
                 else:
