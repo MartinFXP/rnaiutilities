@@ -36,7 +36,7 @@ If you get errors, I probably forgot some dependency.
 
 ## Documentation
 
-Check out the documentation [here](https://cbg-ethz.github.io/rnaiutilities/rnai_query.html).
+Check out the documentation [here](https://rnaiutilities.rtfd.io).
 
 ## Author
 
